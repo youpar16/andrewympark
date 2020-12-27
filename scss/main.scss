@@ -1,0 +1,543 @@
+@import "variables";
+@import "utilities";
+//Reset all
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Dosis", sans-serif;
+  line-height: 1.7;
+  background: #fff;
+}
+
+// Links
+a {
+  // Want to get rid of the underline
+  text-decoration: none;
+  color: $dark-color;
+}
+
+ul {
+  // Want to get rid of bullets
+  list-style: none;
+}
+
+h2,
+h3,
+h4 {
+  text-transform: uppercase;
+}
+
+img {
+  width: 100%;
+}
+
+// Main Nav
+#main-nav {
+  display: flex;
+  justify-content: right;
+  padding-top: 1rem;
+
+  ul {
+    display: flex;
+  }
+  li {
+    padding: 1rem 1.5rem;
+  }
+  a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    border-bottom: 3px transparent solid;
+    transition: border-color 0.5s;
+
+    &:hover {
+      border-color: $medium-color;
+    }
+
+    &.current {
+      border-color: $main-color;
+    }
+  }
+}
+
+// Header
+.header-home {
+  background: $bg-image no-repeat center center/cover;
+  height: 100vh;
+  color: #fff;
+  display: flex;
+
+  //Content
+  .header-content {
+    // position: absolute;
+    top: 50%;
+    text-align: center;
+
+    h1 {
+      font-size: 4rem;
+      line-height: 1.2;
+    }
+    h2 {
+      padding-bottom: 1rem;
+    }
+  }
+}
+
+.header-about {
+  background: $bg-image no-repeat 20% 30% / cover;
+  height: 5.5rem;
+  border-bottom: 3px solid $main-color;
+}
+
+// About Page
+#about {
+  // About Me portion
+  &-1 {
+    .about-intro {
+      display: grid;
+      grid-template-areas: "bioimage bio bio";
+      grid-gap: 1.2rem;
+    }
+
+    // Setting up our grid areas
+    .bio-img {
+      grid-area: bioimage;
+    }
+
+    .bio {
+      grid-area: bio;
+      padding: 0.8rem;
+      p {
+        margin-top: 1rem;
+      }
+    }
+
+    .title {
+      grid-area: title;
+    }
+  }
+
+  &-2 {
+    .interests {
+      grid-area: interests;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1.5rem;
+      text-align: center;
+
+      &-icon {
+        border-radius: 50%;
+        background: $dark-color;
+        color: #fff;
+        padding: 2rem;
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        text-align: center;
+        position: relative;
+        transition: all 1s;
+      }
+    }
+
+    .photography .fas,
+    .fashion .fas,
+    .dance .fas,
+    .cs .fas {
+      margin: 1rem;
+    }
+
+    .photography a,
+    .fashion a,
+    .dance a,
+    .cs a {
+      margin-top: 1rem;
+    }
+  }
+
+  &-3 {
+    .interests {
+      grid-area: interests;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1.5rem;
+      text-align: center;
+    }
+    .icon {
+      border-radius: 50%;
+      background: $dark-color;
+      color: #fff;
+      padding: 2rem;
+      width: 70px;
+      height: 70px;
+      line-height: 70px;
+      text-align: center;
+      position: relative;
+      transition: all 1s;
+      margin-bottom: 1rem;
+
+      &:hover {
+        background: $main-color;
+        width: 90px;
+        height: 90px;
+        line-height: 90px;
+        .inner-icon {
+          background: $dark-color;
+        }
+      }
+    }
+
+    .inner-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: $main-color;
+      border-radius: 50%;
+      height: 15px;
+      width: 15px;
+      line-height: 15px;
+      padding: 1rem;
+      transition: all 1s;
+
+      .fas {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 6px;
+        font-size: 20px;
+        transition: all 1s;
+      }
+    }
+
+    .bottom-line-3,
+    .bottom-line-2 {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+// Photography Page
+#timeline {
+  // invisible line running down
+  & ul li {
+    list-style: none;
+    position: relative;
+    width: 6px;
+    margin: 0 auto;
+    padding-top: 50px;
+    background: #ccc;
+    & div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    // setting up the dimensions of the image
+    & div img {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      bottom: 0;
+      width: 350px;
+      padding: 1rem;
+      transition: all 0.5s ease-in-out;
+      visibility: hidden;
+      opacity: 0;
+    }
+    // image transition odd
+    &:nth-child(odd) div img {
+      left: 40px;
+      transform: translate(400px, 0);
+    }
+    // image transition even
+    &:nth-child(even) div img {
+      left: -434px;
+      transform: translate(-400px, 0);
+    }
+    // image show
+    &.show div img {
+      transform: none;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    & div .location {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      justify-content: left;
+      align-items: center;
+      bottom: 0;
+      width: 350px;
+      padding: 1rem;
+      transition: all 0.5s ease-in-out;
+
+      & i {
+        font-size: 25px;
+        padding-top: 15px;
+      }
+
+      & .section-title {
+        width: 250px;
+        padding-left: 10px;
+      }
+    }
+
+    &:nth-child(even) div .location {
+      left: -204px;
+    }
+    &:nth-child(odd) div .location {
+      left: -776px;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  & .bottom-line-photography {
+    height: 2px;
+    width: 28.5rem;
+    background: $main-color;
+    display: block;
+    margin: 0 auto 1rem 0;
+  }
+}
+
+#ssn {
+  h2 {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+  a {
+    padding: 0.5rem 0.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.5s;
+    border: none;
+    cursor: pointer;
+    background-color: $main-color;
+    color: #f4f4f4;
+    &:hover {
+      color: $dark-color;
+      background-color: $light-color;
+    }
+  }
+}
+
+// Fashion Page
+.container-fashion {
+  max-width: $website-width;
+  padding: 0 1.5rem;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1rem;
+  .bottom-line-fashion {
+    height: 2px;
+    width: 28rem;
+    background: $main-color;
+    display: block;
+    margin: 0 auto 1rem 0;
+  }
+}
+#outfits {
+  .container {
+    display: grid;
+    grid-template-areas:
+      "outfit-1 outfit-2"
+      "outfit-3 outfit-4"
+      "outfit-5 outfit-6";
+    grid-gap: 1rem;
+    justify-items: center;
+  }
+  img {
+    width: 550px;
+  }
+}
+
+// Dance Page
+#covers {
+  .container {
+    .video-1 {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 2rem;
+      padding: 2rem 0;
+      background: $dark-color;
+      border-radius: 30px;
+      .iframe {
+        justify-content: center;
+        align-items: center;
+      }
+      .description-1 {
+        background: $light-color;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        width: 560px;
+        height: 315px;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .video-2 {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 2rem;
+      padding: 2rem 0;
+      background: $main-color;
+      border-radius: 30px;
+      .iframe {
+        justify-content: center;
+        align-items: center;
+      }
+      .description-2 {
+        background: $light-color;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        width: 560px;
+        height: 315px;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .video-3 {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 2rem;
+      padding: 2rem 0;
+      background: $dark-color;
+      border-radius: 30px;
+      .iframe {
+        justify-content: center;
+        align-items: center;
+      }
+      .description-3 {
+        background: $light-color;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        width: 560px;
+        height: 315px;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .video-4 {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 2rem;
+      padding: 2rem 0;
+      background: $main-color;
+      border-radius: 30px;
+      .iframe {
+        justify-content: center;
+        align-items: center;
+      }
+      .description-4 {
+        background: $light-color;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        width: 560px;
+        height: 315px;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+
+// Projects
+#current-projects {
+  margin-top: 2rem;
+  .container {
+    display: flex;
+    flex-direction: column;
+    .project-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      margin-bottom: 2rem;
+      background: $main-color;
+      .item {
+        width: 45%;
+        display: flex;
+        align-items: stretch;
+      }
+      .project-description {
+        width: 45%;
+        background: $light-color;
+        text-align: center;
+        border: 1px solid $main-color;
+        padding: 1rem;
+        margin: 2rem 0;
+        h2 {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+    .project-1 {
+      p {
+        margin-bottom: 12px;
+      }
+    }
+    .project-2 {
+      .last-line {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+.bottom-line-projects {
+  height: 2px;
+  width: 23rem;
+  background: $main-color;
+  display: block;
+  margin: 0 auto 1rem 0;
+}
+
+// Contact Page
+#contact-form {
+  form {
+    padding: 0 10rem;
+    button[type="submit"] {
+      width: 50%;
+    }
+  }
+  .text-fields {
+    display: grid;
+    grid-template-areas:
+      "name email"
+      "subject subject"
+      "message message";
+    grid-gap: 1.2rem;
+    margin-bottom: 1.2rem;
+
+    .name-input {
+      grid-area: name;
+    }
+    .subject-input {
+      grid-area: subject;
+    }
+    .email-input {
+      grid-area: email;
+    }
+    .message-input {
+      grid-area: message;
+      height: 100px;
+    }
+
+    .text-input {
+      padding: 0.5rem 1rem;
+    }
+  }
+}
+
+// Footer
+#main-footer {
+  p {
+    margin-top: 2rem;
+  }
+}

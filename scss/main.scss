@@ -465,6 +465,10 @@ img {
         width: 45%;
         display: flex;
         align-items: stretch;
+        border: none;
+        .img {
+          border: none;
+        }
       }
       .project-description {
         width: 45%;
@@ -483,9 +487,29 @@ img {
         margin-bottom: 12px;
       }
     }
-    .project-2 {
+    .project-2,
+    .project-3 {
       .last-line {
         margin-bottom: 1rem;
+      }
+    }
+    .project-2 {
+      .item {
+        height: 393.2px;
+      }
+    }
+    .project-3 {
+      .wiki-link {
+        text-decoration: underline;
+        &:hover {
+          color: $main-color;
+        }
+      }
+      .item {
+        height: 338.8px;
+      }
+      .src-code {
+        margin-left: 16px;
       }
     }
   }
